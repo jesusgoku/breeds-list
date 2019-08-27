@@ -1,10 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Breeds List
+
+[![Build Status](https://travis-ci.com/jesusgoku/breeds-list.svg?branch=master)](https://travis-ci.com/jesusgoku/breeds-list)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/49417809-22fd-4a65-a189-941f2de8113b/deploy-status)](https://app.netlify.com/sites/dazzling-brattain-a5bbc2/deploys)
+
+Display images from [Dog API](https://dog.ceo/dog-api/documentation/).
+
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Requirements
+
+- Filter by Breed/Sub-Breed
+- Multiple filter active
+- Display active filters and remove
+- Responsive
+
+## Tools - Frameworks - Libraries
+
+- React v16.x
+- Bootstrap v4.x
+- FontAwesome v4.x
+- Axios
+
+React and Bootstrap are used because they are the more fresh frameworks in my mind.
+
+## Running Project
+
+### With Node
+
+```sh
+yarn install
+yarn run start
+# Open your browser on: http://0.0.0.0:3000
+```
+
+### With Docker and Docker-Compose
+
+```sh
+docker-compose build app
+docker-compose up -d app
+# Open your browser on: http://0.0.0.0:3000
+```
+
+## Features
+
+- CI/CD with [TravisCI](https://travis-ci.com)
+- Deploy to [Netlify](https://netlify.com)
+- Enable for running with Docker/Compose
+
+## TODO
+
+- [x] Usage React Hooks instead class components
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,12 +63,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,7 +78,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `yarn run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
