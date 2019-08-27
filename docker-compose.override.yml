@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      target: build
+    ports:
+      - "3000:3000"
+    command: ["yarn", "run", "start"]

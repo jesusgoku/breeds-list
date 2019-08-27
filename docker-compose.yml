@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  app:
+    image: breeds-list
+    build:
+      context: .
+      dockerfile: ./Dockerfile
