@@ -10,7 +10,7 @@ Display images from [Dog API](https://dog.ceo/dog-api/documentation/).
 ## Requirements
 
 - Filter by Breed/Sub-Breed
-- Multiple filter active
+- Multiple filters active
 - Display active filters and remove
 - Responsive
 
@@ -49,7 +49,10 @@ docker-compose up -d app
 
 ## TODO
 
-- [x] Usage React Hooks instead class components
+- Improvment UX for filters
+- Usage React Hooks instead class components
+- Improvment component tests
+- Implement test E2E
 
 ## Available Scripts
 
