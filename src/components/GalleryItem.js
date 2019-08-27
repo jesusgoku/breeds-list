@@ -5,7 +5,6 @@ import makeCancelable from '../libs/make-cancelable';
 import BreedApi from '../services/breeds-api';
 
 import './GalleryItem.css';
-import { thisExpression } from '@babel/types';
 
 class GalleryItem extends Component {
   constructor(props) {
