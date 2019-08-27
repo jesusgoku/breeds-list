@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount, shallow} from 'enzyme';
 import BreedPills from './BreedPills';
 
 const props = {
@@ -10,12 +10,35 @@ const props = {
       path: ['some'],
     }
   },
-  onToggleItem: () => {},
-  onClearItems: () => {},
+  onToggleItem: jest.fn(() => {}),
+  onClearItems: jest.fn(() => {}),
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<BreedPills {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('BreedPills', () => {
+  it('renders without crashing', () => {
+    mount(<BreedPills {...props} />);
+  });
+
+  it('renders (shallow) without crashing', () => {
+    shallow(<BreedPills {...props} />);
+  });
+
+  it('should contain BreedPills__Item', () => {
+    const wrapper = shallow(<BreedPills {...props} />);
+    const itemsEl = wrapper.find('.BreedPills__Item');
+    expect(itemsEl.length).toEqual(1);
+    expect(itemsEl.contains('some')).toBe(true);
+  });
+
+  it('should call onToggleItem prop when click on BreedPills__Item', () => {
+    const wrapper = shallow(<BreedPills {...props} />);
+    wrapper.find('.BreedPills__Item').simulate('click');
+    expect(props.onToggleItem.mock.calls.length).toEqual(1);
+  });
+
+  it('should call onClearItems prop when click on BreedPills__ClearBtn', () => {
+    const wrapper = shallow(<BreedPills {...props} />);
+    wrapper.find('.BreedPills__ClearBtn').simulate('click');
+    expect(props.onClearItems.mock.calls.length).toEqual(1);
+  });
 });
