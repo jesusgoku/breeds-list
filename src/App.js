@@ -64,7 +64,7 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <h1 className="text-center">Breeds List</h1>
+              <h1 className="BreedTitle text-center">Breeds List</h1>
             </div>
           </div>
 
