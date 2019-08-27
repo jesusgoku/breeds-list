@@ -4,6 +4,7 @@ import BreedPills from './components/BreedPills';
 import BreedFilter from './components/BreedFilter';
 import Gallery from './components/Gallery';
 
+import makeCancelable from './libs/make-cancelable';
 import BreedsApi from './services/breeds-api';
 
 import './App.css';
@@ -22,8 +23,20 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const breedsList = await BreedsApi.getBreedsList();
-    this.setState({ breedsList });
+    this.cancelablePromise = makeCancelable(BreedsApi.getBreedsList());
+
+    try {
+      const breedsList = await this.cancelablePromise.promise;
+      this.setState({ breedsList });
+    } catch (e) {
+      if (!e.isCanceled) throw e;
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.cancelablePromise) {
+      this.cancelablePromise.cancel();
+    }
   }
 
   handleToggleItem(item) {

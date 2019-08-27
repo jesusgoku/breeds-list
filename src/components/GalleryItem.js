@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import BreedItemType from '../types/BreedItemType';
 import classnames from 'classnames';
+import BreedItemType from '../types/BreedItemType';
+import makeCancelable from '../libs/make-cancelable';
 import BreedApi from '../services/breeds-api';
 
 import './GalleryItem.css';
+import { thisExpression } from '@babel/types';
 
 class GalleryItem extends Component {
   constructor(props) {
@@ -23,15 +24,24 @@ class GalleryItem extends Component {
     this.setState({ isLoading: true });
 
     // Retrieve image from API
-    const images = await BreedApi.getBreedRandomImages(path);
-    const image = images[0];
+    this.cancelablePromise = makeCancelable(BreedApi.getBreedRandomImages(path));
+    try {
+      const images = await this.cancelablePromise.promise;
+      const image = images[0];
 
-    // Preload image
-    const imageEl = new Image();
-    imageEl.addEventListener('load', () => {
-      this.setState({ image: image, isLoading: false })
-    });
-    imageEl.src = image;
+      // Preload image
+      const imageEl = new Image();
+      imageEl.addEventListener('load', () => {
+        this.setState({ image: image, isLoading: false })
+      });
+      imageEl.src = image;
+    } catch(e) {
+      if (!e.isCanceled) throw e;
+    }
+  }
+
+  componentWillUnmount() {
+    this.cancelablePromise && this.cancelablePromise.cancel();
   }
 
   render() {
