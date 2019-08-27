@@ -18,7 +18,7 @@ class BreedPills extends Component {
         ))}
 
         <p className="text-center mb-0">
-          <button className="btn btn-link btn-sm" onClick={onClearItems}>
+          <button className="BreedPills__ClearBtn btn btn-link btn-sm" onClick={onClearItems}>
             Clear all
           </button>
         </p>
